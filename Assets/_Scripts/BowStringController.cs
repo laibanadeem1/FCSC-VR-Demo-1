@@ -15,6 +15,9 @@ public class BowStringController : MonoBehaviour
     [SerializeField]
     private Transform midPointGrabObject, midPointVisualObject, midPointParent;
 
+    [SerializeField]
+    private float bowStringStretchLimit = 0.3f;
+
     private Transform interactor;
 
     private void Awake()
@@ -47,7 +50,7 @@ public class BowStringController : MonoBehaviour
         if (interactor != null)
         {
             //convert bow string mid point position to the local space of the MidPoint
-            Vector3 midPointLocalSpace = 
+            Vector3 midPointLocalSpace =
                 midPointParent.InverseTransformPoint(midPointGrabObject.position); // localPosition
 
             //get the offset
@@ -62,7 +65,7 @@ public class BowStringController : MonoBehaviour
             bowStringRenderer.CreateString(midPointVisualObject.position);
         }
     }
-
+     
     private void HandlePullingString(float midPointLocalZAbs, Vector3 midPointLocalSpace)
     {
         //what happens when we are between point 0 and the string pull limit
